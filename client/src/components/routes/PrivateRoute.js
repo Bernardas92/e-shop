@@ -5,7 +5,9 @@ import Loading from "./Loading";
 import axios from "axios";
 
 export default function PrivateRoute() {
+  // context
   const [auth, setAuth] = useAuth();
+  // state
   const [ok, setOk] = useState(false);
 
   useEffect(() => {
@@ -17,15 +19,16 @@ export default function PrivateRoute() {
         setOk(false);
       }
     };
-   if (auth?.token) authCheck();
+
+    if (auth?.token) authCheck();
   }, [auth?.token]);
 
   // useEffect(() => {
-  //     if (auth?.token) {
-  //         setOk(true);
-  //     } else {
-  //         setOk(false);
-  //     }
+  //   if (auth?.token) {
+  //     setOk(true);
+  //   } else {
+  //     setOk(false);
+  //   }
   // }, [auth?.token]);
 
   return ok ? <Outlet /> : <Loading />;

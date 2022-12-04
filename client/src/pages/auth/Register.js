@@ -6,10 +6,11 @@ import { useAuth } from "../../context/auth";
 import { useNavigate } from "react-router-dom";
 
 export default function Register() {
+  // state
   const [name, setName] = useState("Bernard");
-  const [email, setEmail] = useState("Bernardas@gmail.com");
-  const [password, setPassword] = useState("bernard");
-
+  const [email, setEmail] = useState("ben@gmail.com");
+  const [password, setPassword] = useState("adminas");
+  // hooks
   const [auth, setAuth] = useAuth();
   const navigate = useNavigate();
 
@@ -17,28 +18,28 @@ export default function Register() {
     e.preventDefault();
     try {
       const { data } = await axios.post(`/register`, {
-      name,
-      email,
-      password
-    });
-    console.log(data);
-    if(data?.error) {
-      toast.error(data.error);
-    } else {
-      localStorage.setItem("auth", JSON.stringify(data));
-      setAuth({...auth, token: data.token, user: data.user });
-      toast.success("Registration successful")
-      navigate("/dashboard");
-    }
+        name,
+        email,
+        password,
+      });
+      console.log(data);
+      if (data?.error) {
+        toast.error(data.error);
+      } else {
+        localStorage.setItem("auth", JSON.stringify(data));
+        setAuth({ ...auth, token: data.token, user: data.user });
+        toast.success("Registration successful");
+        navigate("/dashboard/user");
+      }
     } catch (err) {
-      console.log(err)
-      toast.error("Registration failed. Try again")
+      console.log(err);
+      toast.error("Registration failed. Try again.");
     }
-  }
+  };
 
   return (
-    <div className="App">
-      <Jumbotron title="Register" subTitle="Welcome to React e-shop" />
+    <div>
+      <Jumbotron title="Register" />
       <div className="container mt-5">
         <div className="row">
           <div className="col-md-6 offset-md-3">
@@ -51,23 +52,24 @@ export default function Register() {
                 onChange={(e) => setName(e.target.value)}
                 autoFocus
               />
+
               <input
                 type="email"
                 className="form-control mb-4 p-2"
                 placeholder="Enter your email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                autoFocus
               />
+
               <input
                 type="password"
                 className="form-control mb-4 p-2"
                 placeholder="Enter your password"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
-                autoFocus
               />
-              <button className="btn btn-primary" type="submit" onClick={handleSubmit}>
+
+              <button className="btn btn-primary" type="submit">
                 Submit
               </button>
             </form>

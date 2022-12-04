@@ -5,7 +5,9 @@ import Loading from "./Loading";
 import axios from "axios";
 
 export default function AdminRoute() {
+  // context
   const [auth, setAuth] = useAuth();
+  // state
   const [ok, setOk] = useState(false);
 
   useEffect(() => {
@@ -17,7 +19,8 @@ export default function AdminRoute() {
         setOk(false);
       }
     };
-   if (auth?.token) adminCheck();
+
+    if (auth?.token) adminCheck();
   }, [auth?.token]);
 
   return ok ? <Outlet /> : <Loading path="" />;

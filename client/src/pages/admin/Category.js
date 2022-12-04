@@ -1,5 +1,5 @@
-import { useAuth } from "../../context/auth";
 import { useState, useEffect } from "react";
+import { useAuth } from "../../context/auth";
 import Jumbotron from "../../components/cards/Jumbotron";
 import AdminMenu from "../../components/nav/AdminMenu";
 import axios from "axios";
@@ -8,7 +8,9 @@ import CategoryForm from "../../components/forms/CategoryForm";
 import { Modal } from "antd";
 
 export default function AdminCategory() {
+  // context
   const [auth, setAuth] = useAuth();
+  // state
   const [name, setName] = useState("");
   const [categories, setCategories] = useState([]);
   const [visible, setVisible] = useState(false);
@@ -48,13 +50,13 @@ export default function AdminCategory() {
   const handleUpdate = async (e) => {
     e.preventDefault();
     try {
-      const {data} = await axios.put(`/category/${selected._id}`, {
+      const { data } = await axios.put(`/category/${selected._id}`, {
         name: updatingName,
       });
-      if(data?.error) {
+      if (data?.error) {
         toast.error(data.error);
       } else {
-        toast.success(`${data.name} is updated`);
+        toast.success(`"${data.name}" is updated`);
         setSelected(null);
         setUpdatingName("");
         loadCategories();
@@ -64,15 +66,16 @@ export default function AdminCategory() {
       console.log(err);
       toast.error("Category may already exist. Try again.");
     }
-  }
+  };
+
   const handleDelete = async (e) => {
     e.preventDefault();
     try {
-      const {data} = await axios.delete(`/category/${selected._id}`);
-      if(data?.error) {
+      const { data } = await axios.delete(`/category/${selected._id}`);
+      if (data?.error) {
         toast.error(data.error);
       } else {
-        toast.success(`${data.name} is deleted`);
+        toast.success(`"${data.name}" is deleted`);
         setSelected(null);
         loadCategories();
         setVisible(false);
@@ -81,14 +84,15 @@ export default function AdminCategory() {
       console.log(err);
       toast.error("Category may already exist. Try again.");
     }
-  }
+  };
 
   return (
     <>
       <Jumbotron
         title={`Hello ${auth?.user?.name}`}
-        subTitle="Admin dashboard"
+        subTitle="Admin Dashboard"
       />
+
       <div className="container-fluid">
         <div className="row">
           <div className="col-md-3">
@@ -96,12 +100,15 @@ export default function AdminCategory() {
           </div>
           <div className="col-md-9">
             <div className="p-3 mt-2 mb-2 h4 bg-light">Manage Categories</div>
+
             <CategoryForm
               value={name}
               setValue={setName}
               handleSubmit={handleSubmit}
             />
+
             <hr />
+
             <div className="col">
               {categories?.map((c) => (
                 <button
@@ -117,6 +124,7 @@ export default function AdminCategory() {
                 </button>
               ))}
             </div>
+
             <Modal
               visible={visible}
               onOk={() => setVisible(false)}
@@ -127,8 +135,8 @@ export default function AdminCategory() {
                 value={updatingName}
                 setValue={setUpdatingName}
                 handleSubmit={handleUpdate}
-                buttonText= "Update"
-                handleDelete = {handleDelete}
+                buttonText="Update"
+                handleDelete={handleDelete}
               />
             </Modal>
           </div>

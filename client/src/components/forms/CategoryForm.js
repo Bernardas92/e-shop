@@ -18,7 +18,9 @@ export default function CategoryForm({
         <div className="d-flex justify-content-between">
           <button className="btn btn-primary mt-3">{buttonText}</button>
           {handleDelete && (
-          <button onClick={handleDelete} className="btn btn-danger mt-3">Delete</button>
+            <button onClick={handleDelete} className="btn btn-danger mt-3">
+              Delete
+            </button>
           )}
         </div>
       </form>
