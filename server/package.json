@@ -11,7 +11,7 @@
     "ecommerce",
     "nodejs"
   ],
-  "author": "Ryan",
+  "author": "Bernard",
   "license": "ISC",
   "dependencies": {
     "@sendgrid/mail": "^7.7.0",
