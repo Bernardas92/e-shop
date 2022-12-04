@@ -5,8 +5,15 @@ import Home from "./pages/Home";
 import Login from "./pages/auth/Login";
 import Register from "./pages/auth/Register";
 import Dashboard from "./pages/user/Dashboard";
-import "bootstrap/dist/css/bootstrap.min.css";
-import "bootstrap/dist/js/bootstrap.bundle.min.js";
+import PrivateRoute from "./components/routes/PrivateRoute";
+import AdminRoute from "./components/routes/AdminRoute";
+import PageNotFound from "./components/routes/PageNotFound";
+import AdminDashboard from "./pages/admin/Dashboard";
+import AdminCategory from "./pages/admin/Category";
+import AdminProduct from "./pages/admin/Product";
+import AdminProducts from "./pages/admin/Products";
+import UserOrders from "./pages/user/Orders";
+import UserProfile from "./pages/user/Profile";
 
 export default function App() {
   return (
@@ -18,6 +25,18 @@ export default function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
         <Route path="/dashboard" element={<Dashboard />} />
+        <Route path="/dashboard" element={<PrivateRoute />}>
+          <Route path="user" element={<Dashboard />} />
+          <Route path="user/profile" element={<UserProfile />} />
+          <Route path="user/orders" element={<UserOrders />} />
+        </Route>
+        <Route path="/dashboard" element={<AdminRoute />} >
+          <Route path="admin" element={<AdminDashboard />} />
+          <Route path="admin/category" element={<AdminCategory />} />
+          <Route path="admin/product" element={<AdminProduct />} />
+          <Route path="admin/products" element={<AdminProducts />} />
+        </Route>
+        <Route path="*" element={<PageNotFound />} replace />
       </Routes>
     </BrowserRouter>
   );
