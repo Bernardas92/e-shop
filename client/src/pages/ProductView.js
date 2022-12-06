@@ -70,7 +70,7 @@ export default function ProductView() {
                   className="card-img-top"
                   src={`${process.env.REACT_APP_API}/product/photo/${product._id}`}
                   alt={product.name}
-                  style={{ height: "500px", width: "100%", objectFit: "cover" }}
+                  style={{ height: "500px", width: "100%", objectFit: "contain" }}
                 />
               </Badge.Ribbon>
             </Badge.Ribbon>
