@@ -54,7 +54,7 @@ export default function Home() {
 
   return (
     <div>
-      <Jumbotron title="Hello World" sutTitle="Welcome to React E-commerce" />
+      <Jumbotron title="Alien shop" sutTitle="I Want To Believe" />
       <div className="container-fluid">
         <div className="row">
           <div className="col-md-6">

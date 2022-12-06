@@ -5,6 +5,7 @@ import Search from "../forms/Search";
 import useCategory from "../../hooks/useCategory";
 import { useCart } from "../../context/cart";
 import { Badge } from "antd";
+import Logo from "../../images/Grey.png";
 
 export default function Menu() {
   // context
@@ -25,6 +26,7 @@ export default function Menu() {
   return (
     <>
       <ul className="nav d-flex justify-content-between shadow-sm mb-2 sticky-top bg-light">
+        <img src={Logo} alt="logo" />
         <li className="nav-item">
           <NavLink className="nav-link" aria-current="page" to="/">
             HOME

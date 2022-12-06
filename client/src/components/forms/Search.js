@@ -23,7 +23,7 @@ export default function Search() {
     <form className="d-flex" onSubmit={handleSubmit}>
       <input
         type="search"
-        style={{ borderRadius: "0px" }}
+        style={{ borderRadius: "7px", marginRight: "4px" }}
         className="form-control"
         placeholder="Search"
         onChange={(e) => setValues({ ...values, keyword: e.target.value })}
@@ -32,7 +32,7 @@ export default function Search() {
       <button
         className="btn btn-outline-primary"
         type="submit"
-        style={{ borderRadius: "0px" }}
+        style={{ borderRadius: "7px" }}
       >
         Search
       </button>
