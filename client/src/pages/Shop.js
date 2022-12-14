@@ -5,6 +5,7 @@ import ProductCard from "../components/cards/ProductCard";
 import { Checkbox, Radio } from "antd";
 import { prices } from "../prices";
 
+
 export default function Shop() {
   const [categories, setCategories] = useState([]);
   const [products, setProducts] = useState([]);
